@@ -1,41 +1,44 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Route;
 
-// Public Pages
+// Public pages
 Route::get('/', [PostController::class, 'home'])->name('home');
-Route::get('/about', function () { return view('pages.about'); })->name('about');
+Route::view('/about', 'pages.about')->name('about');
 Route::get('/news', [PostController::class, 'news'])->name('news');
-Route::get('/contact', function () { return view('pages.contact'); })->name('contact');
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 
-// Guest Routes
+// Guests only
 Route::middleware('guest')->group(function () {
-    Route::get('/login', function () { return view('auth.login'); })->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
-    Route::get('/register', function () { return view('auth.register'); })->name('register');
+    Route::view('/login', 'auth.login')->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:10,1')->name('login.perform');
+    Route::view('/register', 'auth.register')->name('register');
     Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
 });
 
-// Authenticated Routes
+// Logged-in users
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 });
 
-// Admin-Only Routes
+// Admin only (Gate "access-admin" is defined in AppServiceProvider)
 Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
-    
-    // Announcement CRUD Routes
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
     Route::get('/posts', [PostController::class, 'adminIndex'])->name('admin.posts');
     Route::post('/posts', [PostController::class, 'store'])->name('admin.posts.store');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('admin.posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('admin.posts.destroy');
 
-    Route::get('/inquiries', function () { return view('admin.inquiries'); })->name('admin.inquiries');
-    Route::get('/settings', function () { return view('admin.settings'); })->name('admin.settings');
+    Route::get('/inquiries', [AdminController::class, 'inquiries'])->name('admin.inquiries');
+    Route::patch('/inquiries/{inquiry}', [AdminController::class, 'updateInquiry'])->name('admin.inquiries.update');
+
+    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    Route::put('/settings/password', [AdminController::class, 'updatePassword'])->name('admin.settings.password');
 });
