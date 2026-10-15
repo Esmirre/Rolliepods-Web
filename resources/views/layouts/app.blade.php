@@ -33,5 +33,6 @@
     {{-- Include Footer --}}
     @include('partials.footer')
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </body>
 </html>
