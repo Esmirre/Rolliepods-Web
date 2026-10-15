@@ -1,7 +1,3 @@
--- REFERENCE ONLY. The app builds its own tables with:  php artisan migrate --seed
--- Do NOT import this file and also run the migrations (the tables would clash).
--- This mirrors what the Laravel migrations create for users, posts and inquiries.
-
 CREATE DATABASE IF NOT EXISTS rolliepods_db;
 USE rolliepods_db;
 
