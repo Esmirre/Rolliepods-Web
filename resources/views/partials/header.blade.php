@@ -1,102 +1,39 @@
 <header class="site-header">
     <div class="header-container">
-        
-        <!-- Rolliepods Logo -->
-        <div class="header-logo-wrap">
-            <a href="{{ route('home') }}">
-                <img src="{{ asset('img/rolliepods logo RGB-04.png') }}" 
-                     alt="Rolliepods Logo" 
-                     class="header-logo">
-            </a>
-        </div>
+        <a href="{{ route('home') }}" class="header-logo-wrap" aria-label="Rolliepods home">
+            <img src="{{ asset('img/' . rawurlencode('rolliepods logo RGB-04.png')) }}" alt="Rolliepods" class="header-logo">
+        </a>
 
-        <!-- Mobile Menu Toggle Button -->
-        <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
+        <button class="mobile-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
         </button>
 
-        <!-- Navigation Links -->
         <nav class="header-nav">
             <ul class="nav-list">
-                <li>
-                    <a href="{{ route('home') }}" 
-                       class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
-                        HOME
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('about') }}" 
-                       class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
-                        ABOUT
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('news') }}" 
-                       class="nav-link {{ request()->routeIs('news*') ? 'active' : '' }}">
-                        NEWS
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('contact') }}" 
-                       class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
-                        CONTACT US
-                    </a>
-                </li>
+                <li><a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About</a></li>
+                <li><a href="{{ route('news') }}" class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">News</a></li>
+                <li><a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact us</a></li>
 
-                <!-- Auth Navigation -->
-                @guest
-                    <li class="auth-links">
-                        <a href="{{ route('login') }}" 
-                           class="auth-link {{ request()->routeIs('login') ? 'active' : '' }}">
-                            LOGIN
-                        </a>
+                <li class="auth-links">
+                    @guest
+                        <a href="{{ route('login') }}" class="auth-link">Login</a>
                         <span class="auth-divider">|</span>
-                        <a href="{{ route('register') }}" 
-                           class="auth-link {{ request()->routeIs('register') ? 'active' : '' }}">
-                            SIGN UP
-                        </a>
-                    </li>
-                @endguest
+                        <a href="{{ route('register') }}" class="auth-link">Sign up</a>
+                    @endguest
 
-            <!-- Auth Navigation -->
-            @guest
-                <li class="auth-links">
-                    <a href="{{ route('login') }}" 
-                       class="auth-link {{ request()->routeIs('login') ? 'active' : '' }}">
-                        LOGIN
-                    </a>
-                    <span class="auth-divider">|</span>
-                    <a href="{{ route('register') }}" 
-                       class="auth-link {{ request()->routeIs('register') ? 'active' : '' }}">
-                        SIGN UP
-                    </a>
+                    @auth
+                        @can('access-admin')
+                            <a href="{{ route('admin.dashboard') }}" class="auth-link">Dashboard</a>
+                            <span class="auth-divider">|</span>
+                        @endcan
+                        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                            @csrf
+                            <button type="submit" class="auth-link">Log out</button>
+                        </form>
+                    @endauth
                 </li>
-            @endguest
-            
-            @auth
-                <li class="auth-links">
-                    {{-- Show DASHBOARD link ONLY if the user is an admin --}}
-                    @if(auth()->user()->is_admin || auth()->user()->role === 'admin')
-                        <a href="{{ route('dashboard') }}" 
-                           class="auth-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                            DASHBOARD
-                        </a>
-                        <span class="auth-divider">|</span>
-                    @endif
-            
-                    {{-- Log Out button visible to all authenticated users --}}
-                    <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                        @csrf
-                        <button type="submit" class="auth-link logout-btn">
-                            LOG OUT
-                        </button>
-                    </form>
-                </li>
-            @endauth
             </ul>
         </nav>
-
     </div>
 </header>
