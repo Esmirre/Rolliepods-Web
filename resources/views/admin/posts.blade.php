@@ -22,6 +22,8 @@
             <input class="admin-input" type="file" name="image" id="post-image" accept="image/*"></div>
     </div>
 
+    <label class="check"><input type="checkbox" name="is_published" id="post-published" value="1" checked> Publish now (untick to save as a draft)</label>
+
     @if($errors->any())<ul class="form-errors" role="alert">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>@endif
 
     <div class="form-actions">
@@ -38,14 +40,14 @@
         <div class="post-item-card border-{{ $post->card_color }}">
             <div class="post-item-header">
                 <div>
-                    <h4 class="post-item-title">{{ $post->title }}</h4>
+                    <h4 class="post-item-title">{{ $post->title }}@unless($post->is_published) <span class="pill pill-in_progress">Draft</span>@endunless</h4>
                     <span class="post-item-date">{{ $post->created_at->format('M d, Y') }}</span>
                 </div>
                 <div class="post-actions">
                     <button type="button" class="btn-edit js-edit-post"
-                            data-update-url="{{ route('admin.posts.update', $post) }}"
-                            data-post="{{ json_encode($post->only(['title', 'content', 'card_color'])) }}">Edit</button>
-                    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="inline-form" onsubmit="return confirm('Delete this post?');">
+                            data-update-url="{{ route('admin.posts.update', $post->announcement_id) }}"
+                            data-post="{{ json_encode($post->only(['title', 'content', 'card_color', 'is_published'])) }}">Edit</button>
+                    <form action="{{ route('admin.posts.destroy', $post->announcement_id) }}" method="POST" class="inline-form" onsubmit="return confirm('Delete this post?');">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn-delete">Delete</button>
                     </form>

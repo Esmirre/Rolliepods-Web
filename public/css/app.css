@@ -239,3 +239,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .ann-wide .ann-inner { padding: 22px; } .ann-wide .ann-title { font-size: 2rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* Schema-adaptation additions */
+.check { display: flex; align-items: center; gap: 8px; font-weight: 700; margin: 6px 0; }
+.check input { width: 18px; height: 18px; accent-color: var(--coral); }
+.inquiry-form { margin-top: 12px; display: grid; gap: 10px; }
+.inquiry-form textarea { border-radius: 14px; resize: vertical; }
+.pill-closed { background: #64748b; color: #fff; }
+.pill-input[readonly] { opacity: .75; cursor: default; }

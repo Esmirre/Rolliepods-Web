@@ -79,6 +79,7 @@ function initPostEditor() {
             $('post-title').value = post.title;
             $('post-content').value = post.content;
             $('post-color').value = post.card_color;
+            $('post-published').checked = !!post.is_published;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });

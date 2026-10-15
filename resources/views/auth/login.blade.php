@@ -9,8 +9,8 @@
 
         <form class="auth-card" method="POST" action="{{ route('login.perform') }}" novalidate>
             @csrf
-            <div class="form-group"><label for="login">Username | Email</label>
-                <input class="pill-input" id="login" name="login" value="{{ old('login') }}" autocomplete="username"></div>
+            <div class="form-group"><label for="email">Email</label>
+                <input class="pill-input" id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="email"></div>
             <div class="form-group"><label for="password">Password</label>
                 <input class="pill-input" id="password" type="password" name="password" autocomplete="current-password"></div>
             <p class="switch-text">Don't have an account? <a href="{{ route('register') }}" class="text-orange">Sign up</a></p>

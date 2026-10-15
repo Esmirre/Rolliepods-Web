@@ -16,18 +16,20 @@
                 @endguest
 
                 <div class="form-group"><label for="name">Name</label>
-                    <input class="pill-input" id="name" name="name" value="{{ old('name', auth()->user()->name ?? '') }}" autocomplete="name"></div>
+                    <input class="pill-input" id="name" value="{{ auth()->user()->full_name ?? '' }}" readonly tabindex="-1"></div>
                 <div class="form-group"><label for="email">Email</label>
-                    <input class="pill-input" id="email" type="email" name="email" value="{{ old('email', auth()->user()->email ?? '') }}" autocomplete="email"></div>
-                <div class="form-group"><label for="type" class="sr-only">Message type</label>
-                    <select class="pill-input" id="type" name="type">
-                        <option value="" disabled {{ old('type') ? '' : 'selected' }}>Message type</option>
+                    <input class="pill-input" id="email" value="{{ auth()->user()->email ?? '' }}" readonly tabindex="-1"></div>
+                <div class="form-group"><label for="inquiry_type" class="sr-only">Message type</label>
+                    <select class="pill-input" id="inquiry_type" name="inquiry_type">
+                        <option value="" disabled {{ old('inquiry_type') ? '' : 'selected' }}>Message type</option>
                         @foreach($types as $value => $label)
-                            <option value="{{ $value }}" {{ old('type') === $value ? 'selected' : '' }}>{{ $label }}</option>
+                            <option value="{{ $value }}" {{ old('inquiry_type') === $value ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
                     </select></div>
+                <div class="form-group"><label for="subject">Subject</label>
+                    <input class="pill-input" id="subject" name="subject" value="{{ old('subject') }}" maxlength="200"></div>
                 <div class="form-group"><label for="message">Details</label>
-                    <textarea class="pill-input area" id="message" name="message" rows="7">{{ old('message') }}</textarea></div>
+                    <textarea class="pill-input area" id="message" name="message" rows="6">{{ old('message') }}</textarea></div>
 
                 @if($errors->any())<ul class="form-errors" role="alert">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>@endif
                 @if(session('success'))<p class="alert-success" role="status">{{ session('success') }}</p>@endif

@@ -5,7 +5,7 @@
 @section('panel')
 <h3 class="section-title">Account</h3>
 <dl class="kv">
-    <dt>Username</dt><dd>{{ auth()->user()->name }}</dd>
+    <dt>Name</dt><dd>{{ auth()->user()->full_name }}</dd>
     <dt>Email</dt><dd>{{ auth()->user()->email }}</dd>
     <dt>Role</dt><dd>{{ ucfirst(auth()->user()->role) }}</dd>
 </dl>
