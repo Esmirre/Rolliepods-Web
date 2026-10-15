@@ -1,0 +1,364 @@
+/* ==========================================
+   ROLLIEPODS - MAIN STYLESHEET (app.css)
+   ========================================== */
+
+/* ------------------------------------------
+   1. COLOR PALETTE & DESIGN TOKENS
+   ------------------------------------------ */
+:root {
+  /* Fonts */
+  --font-heading: 'Fredoka', system-ui, sans-serif;
+  --font-body: 'Quicksand', system-ui, sans-serif;
+  
+  /* Brand Colors */
+  --brand-navy: #0b2575;
+  --brand-navy-dark: #07184f;
+  --brand-green: #8cc63f;
+  --brand-green-hover: #7ab431;
+  --brand-orange: #f15a24;
+  --brand-orange-hover: #d94815;
+
+  /* Neutral Tones */
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --text-dark: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --border-light: #e2e8f0;
+
+  body {
+  font-family: var(--font-body);
+  font-weight: 500;
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+  h1, h2, h3, h4, h5, h6,
+.hero-title,
+.card-title,
+.nav-link,
+.btn {
+  font-family: var(--font-heading);
+}
+  
+  /* Layout & Spacing */
+  --container-max-width: 1200px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --transition-fast: 0.2s ease;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(11, 37, 117, 0.08);
+  --shadow-lg: 0 10px 25px rgba(11, 37, 117, 0.12);
+}
+
+/* ------------------------------------------
+   2. GLOBAL RESETS & BASE STYLES
+   ------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--brand-navy);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--brand-orange);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------
+   3. LAYOUT & CONTAINERS
+   ------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 60px 0;
+}
+
+/* ------------------------------------------
+   4. HEADER & NAVIGATION
+   ------------------------------------------ */
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.site-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
+}
+
+.site-logo:hover {
+  transform: scale(1.02);
+}
+
+.nav-list {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--brand-navy);
+  position: relative;
+  padding: 4px 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--brand-green);
+  border-radius: 2px;
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ------------------------------------------
+   5. BUTTONS
+   ------------------------------------------ */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--brand-green);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(140, 198, 63, 0.35);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-green-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(140, 198, 63, 0.45);
+}
+
+.btn-secondary {
+  background-color: var(--brand-orange);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(241, 90, 36, 0.3);
+}
+
+.btn-secondary:hover {
+  background-color: var(--brand-orange-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--brand-navy);
+  border: 2px solid var(--brand-navy);
+}
+
+.btn-outline:hover {
+  background-color: var(--brand-navy);
+  color: #ffffff;
+}
+
+/* ------------------------------------------
+   6. HERO & FEATURE CARDS (HOMEPAGE & ABOUT)
+   ------------------------------------------ */
+.hero-section {
+  padding: 80px 0;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);
+}
+
+.hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 32px auto;
+}
+
+/* Image / Feature Grid */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.35rem;
+  color: var(--brand-navy);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* ------------------------------------------
+   7. FOOTER
+   ------------------------------------------ */
+.site-footer {
+  background-color: var(--brand-navy-dark);
+  color: #ffffff;
+  padding: 50px 0 30px;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  /* Converts blue logo elements to crisp white for the dark footer */
+  filter: brightness(0) invert(1);
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-nav a {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.footer-nav a:hover {
+  color: var(--brand-green);
+}
+
+/* ------------------------------------------
+   8. RESPONSIVE DESIGN (MOBILE ADAPTATION)
+   ------------------------------------------ */
+@media (max-width: 768px) {
+  .header-container {
+    height: 70px;
+  }
+
+  .site-logo {
+    height: 38px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-nav {
+    justify-content: center;
+  }
+}
