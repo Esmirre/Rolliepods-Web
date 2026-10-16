@@ -11,7 +11,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $admin = User::updateOrCreate(
+        // firstOrCreate (not updateOrCreate): the seeder runs on every deploy, and must not
+        // reset a password the admin has already changed in Admin > Settings.
+        $admin = User::firstOrCreate(
             ['email' => 'admin@rolliepods.com'],
             [
                 'full_name' => 'Rolliepods Admin',
