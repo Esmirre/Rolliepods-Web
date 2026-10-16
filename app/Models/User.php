@@ -3,17 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-// Maps onto the `users` table from rolliepods.sql (user_id, full_name, email, password_hash, role).
 class User extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'users';
     protected $primaryKey = 'user_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
-    protected $fillable = ['full_name', 'email', 'password_hash', 'role'];
-    protected $hidden = ['password_hash'];
+    protected $fillable = [
+        'full_name',
+        'email',
+        'password_hash',
+        'role',
+    ];
 
-    // The password column is called password_hash, so tell Laravel's auth about it.
+    protected $hidden = [
+        'password_hash',
+    ];
+
     public function getAuthPassword(): string
     {
         return $this->password_hash;
@@ -24,8 +35,7 @@ class User extends Authenticatable
         return 'password_hash';
     }
 
-    // The table has no remember_token column, so "remember me" is not used.
-    public function getRememberTokenName()
+    public function getRememberTokenName(): string
     {
         return '';
     }
@@ -33,5 +43,10 @@ class User extends Authenticatable
     public function inquiries()
     {
         return $this->hasMany(Inquiry::class, 'tenant_id', 'user_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'author_id', 'user_id');
     }
 }
