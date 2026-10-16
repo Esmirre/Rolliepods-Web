@@ -8,6 +8,12 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // This migration was renamed from 000003 to 000004; databases that already ran
+        // the old name (or were built from rolliepods.sql) have the table already.
+        if (Schema::hasTable('inquiries')) {
+            return;
+        }
+
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id('inquiry_id');
             $table->unsignedBigInteger('tenant_id');
