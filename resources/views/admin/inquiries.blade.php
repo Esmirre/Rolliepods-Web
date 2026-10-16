@@ -44,5 +44,5 @@
         <p class="empty-row">No inquiries here.</p>
     @endforelse
 </div>
-<div class="pager">{{ $items->links('pagination::default') }}</div>
+<div class="pager">{{ $items->links() }}</div>
 @endsection

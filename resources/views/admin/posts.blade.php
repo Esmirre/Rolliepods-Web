@@ -60,5 +60,5 @@
         <p class="empty-row">No announcements posted yet.</p>
     @endforelse
 </div>
-<div class="pager">{{ $posts->links('pagination::default') }}</div>
+<div class="pager">{{ $posts->links() }}</div>
 @endsection
