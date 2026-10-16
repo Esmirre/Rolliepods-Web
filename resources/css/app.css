@@ -26,31 +26,23 @@
   --text-muted: #64748b;
   --border-light: #e2e8f0;
 
-  body {
-  font-family: var(--font-body);
-  font-weight: 500;
-  background-color: var(--bg-main);
-  color: var(--text-body);
-  line-height: 1.6;
+  /* Layout & Spacing */
+  --container-max-width: 75rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --transition-fast: 0.2s ease;
+  --shadow-sm: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 0.25rem 0.75rem rgba(11, 37, 117, 0.08);
+  --shadow-lg: 0 0.625rem 1.5625rem rgba(11, 37, 117, 0.12);
 }
 
-  h1, h2, h3, h4, h5, h6,
+h1, h2, h3, h4, h5, h6,
 .hero-title,
 .card-title,
 .nav-link,
 .btn {
   font-family: var(--font-heading);
-}
-  
-  /* Layout & Spacing */
-  --container-max-width: 1200px;
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --transition-fast: 0.2s ease;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(11, 37, 117, 0.08);
-  --shadow-lg: 0 10px 25px rgba(11, 37, 117, 0.12);
 }
 
 /* ------------------------------------------
@@ -67,7 +59,8 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 500;
   background-color: var(--bg-main);
   color: var(--text-body);
   line-height: 1.6;
@@ -103,11 +96,11 @@ img {
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 1.5rem;
 }
 
 .section {
-  padding: 60px 0;
+  padding: 3.75rem 0;
 }
 
 /* ------------------------------------------
@@ -115,24 +108,24 @@ img {
    ------------------------------------------ */
 .site-header {
   background-color: #fdf8f0;
-  border-bottom: 1px solid var(--border-light);
-  border-bottom-left-radius: 28px;
-  border-bottom-right-radius: 28px;
+  border-bottom: 0.0625rem solid var(--border-light);
+  border-bottom-left-radius: 1.75rem;
+  border-bottom-right-radius: 1.75rem;
   position: relative;
   top: 0;
   z-index: 1000;
   box-shadow: var(--shadow-sm);
-  padding: 10px 0;
+  padding: 0.625rem 0;
 }
 
 .header-container {
-  max-width: 1300px;
+  max-width: 81.25rem;
   margin: 0 auto;
-  padding: 8px 40px;
+  padding: 0.5rem 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 5rem;
 }
 
 .site-logo {
@@ -149,20 +142,21 @@ img {
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 2.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .nav-link {
-  font-family: 'Fredoka', system-ui, sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
   color: #0b2575;
   text-decoration: none;
   text-transform: uppercase;
+  position: relative;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
@@ -173,9 +167,9 @@ img {
   bottom: 0;
   left: 0;
   width: 0;
-  height: 3px;
+  height: 0.1875rem;
   background-color: var(--brand-green);
-  border-radius: 2px;
+  border-radius: 0.125rem;
   transition: width var(--transition-fast);
 }
 
@@ -188,15 +182,15 @@ img {
 .auth-links {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-left: 10px;
+  gap: 0.375rem;
+  margin-left: 0.625rem;
 }
 
 .auth-link {
-  font-family: 'Fredoka', system-ui, sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
   color: #f15a24;
   text-decoration: none;
   text-transform: uppercase;
@@ -225,7 +219,7 @@ img {
    ------------------------------------------ */
 .btn {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 0.75rem 1.75rem;
   font-size: 1rem;
   font-weight: 700;
   border-radius: var(--radius-md);
@@ -238,32 +232,32 @@ img {
 .btn-primary {
   background-color: var(--brand-green);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(140, 198, 63, 0.35);
+  box-shadow: 0 0.25rem 0.875rem rgba(140, 198, 63, 0.35);
 }
 
 .btn-primary:hover {
   background-color: var(--brand-green-hover);
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(140, 198, 63, 0.45);
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.375rem 1.25rem rgba(140, 198, 63, 0.45);
 }
 
 .btn-secondary {
   background-color: var(--brand-orange);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(241, 90, 36, 0.3);
+  box-shadow: 0 0.25rem 0.875rem rgba(241, 90, 36, 0.3);
 }
 
 .btn-secondary:hover {
   background-color: var(--brand-orange-hover);
   color: #ffffff;
-  transform: translateY(-2px);
+  transform: translateY(-0.125rem);
 }
 
 .btn-outline {
   background-color: transparent;
   color: var(--brand-navy);
-  border: 2px solid var(--brand-navy);
+  border: 0.125rem solid var(--brand-navy);
 }
 
 .btn-outline:hover {
@@ -275,7 +269,7 @@ img {
    6. HERO & FEATURE CARDS (HOMEPAGE & ABOUT)
    ------------------------------------------ */
 .hero-section {
-  padding: 80px 0;
+  padding: 5rem 0;
   text-align: center;
   background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);
 }
@@ -284,53 +278,53 @@ img {
   font-size: 2.75rem;
   font-weight: 800;
   color: var(--brand-navy);
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
   line-height: 1.2;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
   color: var(--text-muted);
-  max-width: 650px;
-  margin: 0 auto 32px auto;
+  max-width: 40.625rem;
+  margin: 0 auto 2rem auto;
 }
 
 /* Image / Feature Grid */
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  margin-top: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
 }
 
 .card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 1.5rem;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-light);
+  border: 0.0625rem solid var(--border-light);
   text-align: center;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-0.375rem);
   box-shadow: var(--shadow-lg);
 }
 
 .card-image {
   width: 100%;
-  height: 240px;
+  height: 15rem;
   object-fit: cover;
   border-radius: var(--radius-md);
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .card-title {
   font-size: 1.35rem;
   color: var(--brand-navy);
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 /* ------------------------------------------
@@ -339,7 +333,7 @@ img {
 .site-footer {
   background-color: var(--brand-navy-dark);
   color: #ffffff;
-  padding: 50px 0 30px;
+  padding: 3.125rem 0 1.875rem;
   margin-top: auto;
 }
 
@@ -348,11 +342,11 @@ img {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 .footer-logo {
-  height: 40px;
+  height: 2.5rem;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -361,12 +355,12 @@ img {
 .footer-text {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .footer-nav {
   display: flex;
-  gap: 24px;
+  gap: 1.5rem;
   list-style: none;
 }
 
@@ -389,18 +383,18 @@ img {
   border: none;
   cursor: pointer;
   flex-direction: column;
-  gap: 5px;
-  padding: 5px;
+  gap: 0.3125rem;
+  padding: 0.3125rem;
 }
 
 .hamburger-bar {
-  width: 24px;
-  height: 3px;
+  width: 1.5rem;
+  height: 0.1875rem;
   background-color: #0b2575;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 56.25rem) {
   .mobile-nav-toggle {
     display: flex;
   }
@@ -412,10 +406,10 @@ img {
     left: 0;
     width: 100%;
     background-color: #fdf8f0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding: 20px 0;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-bottom-left-radius: 1.25rem;
+    border-bottom-right-radius: 1.25rem;
+    padding: 1.25rem 0;
+    box-shadow: 0 0.625rem 1.25rem rgba(0,0,0,0.1);
   }
 
   .header-nav.active {
@@ -424,13 +418,13 @@ img {
 
   .nav-list {
     flex-direction: column;
-    gap: 18px;
+    gap: 1.125rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .header-container {
-    height: 70px;
+    height: 4.375rem;
   }
 
   .site-logo {
