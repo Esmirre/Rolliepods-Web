@@ -136,7 +136,7 @@ img {
 }
 
 .site-logo {
-  height: 48px;
+  height: 3rem;
   width: auto;
   object-fit: contain;
   transition: transform var(--transition-fast);
