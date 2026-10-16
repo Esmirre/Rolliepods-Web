@@ -12,7 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Global or group middleware configuration
+        // Hosts like Railway serve HTTPS through a proxy; trust it so asset() and route()
+        // build https:// links instead of http:// ones the browser would block.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Exception handling rules

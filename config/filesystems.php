@@ -9,15 +9,15 @@ return [
             'serve' => true,
             'throw' => false,
         ],
+        // Uploads go straight into public/storage so they are served without
+        // `php artisan storage:link` (free hosts like InfinityFree can't make symlinks).
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => public_path('storage'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
     ],
-    'links' => [
-        public_path('storage') => storage_path('app/public'),
-    ],
+    'links' => [],
 ];
